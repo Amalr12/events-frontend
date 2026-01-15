@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { ImCancelCircle } from 'react-icons/im'
 import { addEventAPI, deleteEventAPI, getEventAPI, updateEventAPI } from '../Services/allApi';
+import { FaPowerOff } from 'react-icons/fa';
 
 function AdminPage() {
     const [modal, setModal] = useState(false)
@@ -25,8 +26,9 @@ function AdminPage() {
             const result = await addEventAPI(event)
             console.log(result);
             if (result.status == 200) {
-                setModal(false)
+               
                 alert(`Event Added Successfully`)
+                 setModal(false)
                 handleReset()
 
             } else if (result.status == 406) {
@@ -94,17 +96,20 @@ function AdminPage() {
             <div className='home '>
 
                 <h1 className='text-4xl text-red-500 font-bold justify-center flex pt-10 '>Event Scheduler</h1>
-                <button onClick={() =>
-                    setModal(true)
-
-                } className='bg-blue-800 rounded px-3 py-4 text-white font-bold mt-10 m-5'>Add Event +</button>
+               <div className='justify-between flex'>
+                    <button onClick={() =>
+                        setModal(true)
+    
+                    } className='bg-blue-800 rounded px-3 py-4 text-white font-bold mt-10 m-5'>Add Event +</button>
+                  <div>  <button className='bg-blue-800 rounded px-5 py-3 text-white font-bold mt-10 m-5'>Logout <FaPowerOff /></button></div>
+               </div>
 
 
                 <div className='p-2'>
                     {
                         allEvents?.length > 0 ?
                             allEvents?.map((item) => (
-                                <div className="grid grid-cols-[3fr_8fr_3fr] m-10 bg-gray-400 p-10">
+                                <div className="grid md:grid-cols-[3fr_8fr_3fr] m-10 bg-gray-400 p-10">
                                     <div className=' border-b-gray-700 border-4  p-5'>
 
                                         <h1 className='font-bold text-3xl justify-center items-center flex'>{item?.date}</h1>
