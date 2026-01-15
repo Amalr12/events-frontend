@@ -1,0 +1,1 @@
+export const serverURL = "https://events-server-vuco.onrender.com"
