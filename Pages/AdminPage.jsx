@@ -85,7 +85,7 @@ function AdminPage() {
 
     useEffect(() => {
         getEvent()
-    }, [])
+    }, [allEvents])
 
 
 
