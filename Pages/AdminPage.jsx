@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react'
 import { ImCancelCircle } from 'react-icons/im'
 import { addEventAPI, deleteEventAPI, getEventAPI, updateEventAPI } from '../Services/allApi';
 import { FaPowerOff } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 function AdminPage() {
     const [modal, setModal] = useState(false)
     const [allEvents, setAllEvents] = useState([])
     const [isEdit, setIsEdit] = useState(false)
     const [editId, setEditId] = useState(null)
+    const navigate=useNavigate()
     const [event, setEvent] = useState({
         title: "", date: "", startTime: "", endTime: "", description: "", created: ""
     })
@@ -82,6 +84,9 @@ function AdminPage() {
 
         }
     }
+    const handleLogOut=()=>{
+        navigate("/")
+    }
 
 
 
@@ -101,7 +106,7 @@ function AdminPage() {
                         setModal(true)
     
                     } className='bg-blue-800 rounded px-3 py-4 text-white font-bold mt-10 m-5'>Add Event +</button>
-                  <div>  <button className='bg-blue-800 rounded px-5 py-3 text-white font-bold mt-10 m-5'>Logout <FaPowerOff /></button></div>
+                  <div>  <button onClick={handleLogOut} type='button' className='bg-blue-800 rounded px-5 py-3 text-white font-bold mt-10 m-5'>Logout <FaPowerOff /></button></div>
                </div>
 
 
